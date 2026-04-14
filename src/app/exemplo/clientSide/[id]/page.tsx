@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 
 export default function ExemploClient() {
   // Para usarmos hooks normalmente o componente deve ser client-side
-  // O hook useParams é usado para acessar os parâmetros da rota dinâmica, ele retorna um objeto com os parâmetros definidos na rota, nesse caso, o "id"
+  // O hook useParams() é usado para acessar os parâmetros da rota dinâmica, ele retorna um objeto com os parâmetros definidos na rota, nesse caso, o "id" 👇
   const { id } = useParams(); 
 
   return (
