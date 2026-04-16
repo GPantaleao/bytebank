@@ -1,28 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --bg-verde: #d1fae5;
+/*Uso nos TSX: className="bg-primary-500" ou className=" text-gray-900"*/
+
+@theme  {
+  /* Primary - Verde */
+  --color-primary-100: rgb(169, 201, 107);
+  --color-primary-300: rgb(143, 174, 74);
+  --color-primary-600: rgb(107, 142, 35);
+
+  /* Secondary - Bege */
+  --color-secondary-100: rgb(255, 255, 242);
+  --color-secondary-300: rgb(250, 249, 232);
+  --color-secondary-600: rgb(245, 245, 220);
+
+  --color-gray-100: rgb(245, 245, 245);
+  --color-gray-200: rgb(229, 229, 229);
+  --color-gray-300: rgb(212, 212, 212);
+  --color-gray-400: rgb(163, 163, 163);
+  --color-gray-500: rgb(115, 115, 115);
+  --color-gray-600: rgb(82, 82, 82);
+  --color-gray-700: rgb(64, 64, 64);
+  --color-gray-800: rgb(38, 38, 38);
+  --color-gray-900: rgb(23, 23, 23);
+
+  /* Details - Dourado */
+  --color-golden-600: rgb(199, 149, 0);
+
+  /* Fontes - Heading  e body */
+  --font-size-h-sm: 18px;
+  --font-size-h-sm--line-height: 1.2;
+  --font-size-h-md: 22px;
+  --font-size-h-md--line-height: 1.2;
+  --font-size-h-xl: 25px;
+  --font-size-h-xl--line-height: 1.2;
+  --font-size-h-2xl: 28px;
+  --font-size-h-2xl--line-height: 1.2;
+  --font-size-h-4xl: 32px;
+  --font-size-h-4xl--line-height: 1.2;
+
+  --font-size-b-xs: 12px;
+  --font-size-b-xs--line-height: 1.5;
+  --font-size-b-sm: 14px;
+  --font-size-b-sm--line-height: 1.5;
+  --font-size-b-md: 16px;
+  --font-size-b-md--line-height: 1.5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-verde: var(--bg-verde);
+html {
+  font-family: 'Inter', sans-serif;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
