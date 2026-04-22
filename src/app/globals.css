@@ -7,6 +7,7 @@
   --color-primary-100: rgb(169, 201, 107);
   --color-primary-300: rgb(143, 174, 74);
   --color-primary-600: rgb(107, 142, 35);
+  --color-primary-700: rgb(86, 114, 29);
 
   /* Secondary - Bege */
   --color-secondary-100: rgb(255, 255, 242);
@@ -25,6 +26,10 @@
 
   /* Details - Dourado */
   --color-golden-600: rgb(199, 149, 0);
+
+  /* Shadows */
+  --shadow-soft: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  --shadow-strong: 0px 8px 24px rgba(0, 0, 0, 0.12);
 
   /* Fontes - Heading  e body */
   --font-size-h-sm: 18px;
@@ -48,6 +53,16 @@
 
 html {
   font-family: 'Inter', sans-serif;
+}
 
+body {
+  margin: 0;
+}
+
+.main-content {
+  background-color: var(--color-secondary-600);
+  background-image: url('./assets/Background.png');
+  background-blend-mode: multiply;
+  background-size: cover;
 }
 

@@ -1,15 +1,45 @@
 {
   "transactions": [
     {
-      "id": 1,
-      "valor": 50.00,
-      "data": "2024-06-01T12:00:00Z"
+      "id": "1",
+      "amount": 3000.5,
+      "type": "transferencia",
+      "date": "2026-04-21T15:30:00Z",
+      "description": "Pagamento de aluguel",
+      "category": "Moradia"
+    },
+    {
+      "id": "2",
+      "amount": 150.5,
+      "type": "deposito",
+      "date": "2026-04-22T10:15:00Z",
+      "description": "Supermercado",
+      "category": "Alimentação"
+    },
+    {
+      "id": "3",
+      "amount": 1200,
+      "type": "deposito",
+      "date": "2026-04-20T09:00:00Z",
+      "description": "Depósito de Salário",
+      "category": "Renda"
+    },
+    {
+      "id": "4",
+      "amount": 45,
+      "type": "transferencia",
+      "date": "2026-04-21T18:45:00Z",
+      "description": "Assinatura de Streaming",
+      "category": "Lazer"
     }
   ],
   "accounts": [
     {
-      "id": 1,
-      "saldo": 1000.00
+      "id": "1",
+      "balance": 3500,
+      "userName": "John Doe",
+      "accountNumber": "12345-6"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
