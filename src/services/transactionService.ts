@@ -14,6 +14,7 @@ export const transactionService = {
       });
       
       if (response.status === 404) return null;
+
       if (!response.ok) {
         throw new Error(`Falha ao buscar transação ${id}: ${response.status}`);
       }
