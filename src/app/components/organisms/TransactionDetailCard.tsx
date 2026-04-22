@@ -167,7 +167,7 @@ export const TransactionDetailCard = ({
                 { value: 'deposito', label: 'Depósito' }
               ]}
               value={editData.type}
-              onChange={(value) => setEditData({...editData, type: value as any})}
+              onChange={(value) => setEditData({...editData, type: value as ITransaction["type"]})}
               buttonClassName="p-1"
             />
           ) : (
