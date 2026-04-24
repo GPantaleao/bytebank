@@ -1,0 +1,82 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentação/Tokens de Design" />
+
+# Tokens de Design
+
+Os tokens de design garantem a consistência visual da nossa aplicação. Eles são baseados no arquivo `globals.css` e utilizam o padrão do Tailwind CSS.
+
+## 🎨 Paleta de Cores (Cores Semânticas)
+
+As cores oficiais do projeto **ByteBank**. Elas devem ser usadas através das classes do Tailwind (ex: `bg-primary-600`, `text-gray-900`).
+
+<ColorPalette>
+  <ColorItem 
+    title="Primary (Verde)" 
+    subtitle="Cores principais da marca, interações e indicativos de sucesso/dinheiro." 
+    colors={{ 
+      '100': 'rgb(169, 201, 107)', 
+      '300': 'rgb(143, 174, 74)', 
+      '600': 'rgb(107, 142, 35)', 
+      '700': 'rgb(86, 114, 29)' 
+    }} 
+  />
+  <ColorItem 
+    title="Secondary (Bege)" 
+    subtitle="Usado para o fundo principal do aplicativo (Background) e grandes áreas de respiro." 
+    colors={{ 
+      '100': 'rgb(255, 255, 242)', 
+      '300': 'rgb(250, 249, 232)', 
+      '600': 'rgb(245, 245, 220)' 
+    }} 
+  />
+  <ColorItem 
+    title="Grayscale (Cinzas)" 
+    subtitle="Escala de cinzas para textos estruturais, bordas, componentes desabilitados e modais." 
+    colors={{ 
+      '100': 'rgb(245, 245, 245)', 
+      '200': 'rgb(229, 229, 229)', 
+      '300': 'rgb(212, 212, 212)', 
+      '400': 'rgb(163, 163, 163)',
+      '500': 'rgb(115, 115, 115)',
+      '600': 'rgb(82, 82, 82)',
+      '700': 'rgb(64, 64, 64)',
+      '800': 'rgb(38, 38, 38)',
+      '900': 'rgb(23, 23, 23)' 
+    }} 
+  />
+  <ColorItem 
+    title="Details (Dourado)" 
+    subtitle="Detalhes de destaque (ex: ilustrações do logo)." 
+    colors={{ 
+      '600': 'rgb(199, 149, 0)' 
+    }} 
+  />
+</ColorPalette>
+
+---
+
+## 🔤 Tipografia (Inter)
+
+A fonte primária do projeto é a **Inter** (do Google Fonts), garantindo altíssima legibilidade em interfaces numéricas e financeiras.
+
+**Tamanhos Base (Body e Textos Comuns):**
+<Typeset
+  fontSizes={[12, 18, 22]}
+  fontWeight={400}
+  sampleText="O saldo da sua conta é R$ 2.500,00"
+  fontFamily="Inter, sans-serif"
+/>
+
+**Tamanhos de Cabeçalho (Headings):**
+<Typeset
+  fontSizes={[25, 28, 32]}
+  fontWeight={700}
+  sampleText="Bem-vindo ao ByteBank!"
+  fontFamily="Inter, sans-serif"
+/>
+
+### Pesos de Fonte Disponíveis
+- **Regular (400):** Para textos corridos e descrições longas. (`font-normal`)
+- **Semibold (600):** Para botões e subtítulos. (`font-semibold`)
+- **Bold (700):** Para grandes títulos e chamadas (ex: Saldo, Nova transação). (`font-bold`)

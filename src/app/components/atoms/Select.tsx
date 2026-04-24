@@ -36,7 +36,7 @@ export const Select = ({
       )}
       <SelectPrimitive.Root value={value} onValueChange={onChange}>
         <SelectPrimitive.Trigger
-          className={`flex items-center justify-between font-semibold text-gray-700 bg-gray-50 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all cursor-pointer hover:bg-gray-100 min-w-[160px] ${buttonClassName}`}
+          className={`flex items-center justify-between text-h-md text-gray-700 bg-gray-50 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all cursor-pointer hover:bg-gray-100 min-w-[160px] ${buttonClassName}`}
         >
           <SelectPrimitive.Value placeholder={placeholder} />
           <SelectPrimitive.Icon>
@@ -57,7 +57,7 @@ export const Select = ({
                 <SelectPrimitive.Item
                   key={option.value}
                   value={option.value}
-                  className="flex items-center px-8 py-2 text-sm text-gray-700 rounded-md cursor-pointer select-none relative hover:bg-primary-100 focus:bg-primary-100 focus:outline-none data-[state=checked]:font-bold data-[state=checked]:text-primary-600"
+                  className="flex items-center px-8 py-2 text-sm text-gray-800 rounded-md cursor-pointer select-none relative hover:bg-primary-100 focus:bg-primary-100 focus:outline-none data-[state=checked]:font-bold data-[state=checked]:text-primary-600"
                 >
                   <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                   <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center justify-center">

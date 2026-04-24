@@ -32,23 +32,17 @@
   --shadow-strong: 0px 8px 24px rgba(0, 0, 0, 0.12);
 
   /* Fontes - Heading  e body */
-  --font-size-h-sm: 18px;
-  --font-size-h-sm--line-height: 1.2;
-  --font-size-h-md: 22px;
-  --font-size-h-md--line-height: 1.2;
-  --font-size-h-xl: 25px;
-  --font-size-h-xl--line-height: 1.2;
-  --font-size-h-2xl: 28px;
-  --font-size-h-2xl--line-height: 1.2;
-  --font-size-h-4xl: 32px;
-  --font-size-h-4xl--line-height: 1.2;
-
   --font-size-b-xs: 12px;
-  --font-size-b-xs--line-height: 1.5;
-  --font-size-b-sm: 14px;
-  --font-size-b-sm--line-height: 1.5;
-  --font-size-b-md: 16px;
-  --font-size-b-md--line-height: 1.5;
+  --font-size-b-sm: 18px;
+  --font-size-b-md: 22px;
+  --font-size-h-xl: 25px;
+  --font-size-h-2xl: 28px;
+  --font-size-h-4xl: 32px;
+
+  --font-regular: 400;
+  --font-semibold: 600;
+  --font-bold: 700;
+
 }
 
 html {

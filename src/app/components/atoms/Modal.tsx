@@ -5,6 +5,7 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { Button } from "./Button";
 
 interface ModalProps {
+  variant?: 'info' | 'danger' | 'warning' | 'success';
   title: string;
   description: string;
   confirmLabel?: string;
@@ -16,6 +17,7 @@ interface ModalProps {
 }
 
 export const Modal = ({
+  variant = 'info',
   title,
   description,
   confirmLabel = "Confirmar",
@@ -41,7 +43,12 @@ export const Modal = ({
             <Button variant="default" outline label={cancelLabel} className="py-2" />
           </AlertDialog.Cancel>
           <AlertDialog.Action asChild>
-            <Button variant="danger" label={confirmLabel} onClick={onConfirm} className="py-2" />
+            <Button 
+              variant={variant === 'danger' ? 'danger' : variant === 'warning' ? 'secondary' : 'primary'} 
+              label={confirmLabel} 
+              onClick={onConfirm} 
+              className="py-2" 
+            />
           </AlertDialog.Action>
         </div>
       </AlertDialog.Content>
