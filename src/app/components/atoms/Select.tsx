@@ -18,11 +18,11 @@ interface SelectProps {
   buttonClassName?: string;
 }
 
-export const Select = ({ 
-  options, 
-  value, 
-  onChange, 
-  placeholder = "Selecione...", 
+export const Select = ({
+  options,
+  value,
+  onChange,
+  placeholder = "Selecione...",
   label,
   className = "",
   buttonClassName = ""
@@ -36,7 +36,7 @@ export const Select = ({
       )}
       <SelectPrimitive.Root value={value} onValueChange={onChange}>
         <SelectPrimitive.Trigger
-          className={`flex items-center justify-between text-h-md text-gray-700 bg-gray-50 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all cursor-pointer hover:bg-gray-100 min-w-[160px] ${buttonClassName}`}
+          className={`flex px-4 py-2 items-center justify-between text-h-md text-gray-700 bg-gray-50 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-300 transition-all cursor-pointer hover:bg-gray-100 min-w-[160px] ${buttonClassName}`}
         >
           <SelectPrimitive.Value placeholder={placeholder} />
           <SelectPrimitive.Icon>
@@ -45,13 +45,13 @@ export const Select = ({
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>
-          <SelectPrimitive.Content 
+          <SelectPrimitive.Content
             className="overflow-hidden bg-white rounded-lg shadow-strong border border-gray-100 z-[100] animate-in fade-in zoom-in-95 duration-100"
           >
             <SelectPrimitive.ScrollUpButton className="flex items-center justify-center h-6 bg-white text-gray-700 cursor-default">
               <ChevronUp className="h-4 w-4" />
             </SelectPrimitive.ScrollUpButton>
-            
+
             <SelectPrimitive.Viewport className="p-1">
               {options.map((option) => (
                 <SelectPrimitive.Item

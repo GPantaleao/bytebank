@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "dev:server": "json-server --watch data/db.json --port 3001",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\" \"npm run storybook\"",
+    "dev:storybook": "concurrently \"npm run dev\" \"npm run storybook\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_1082f4b326cc594"

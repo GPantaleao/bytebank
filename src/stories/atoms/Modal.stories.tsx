@@ -128,18 +128,3 @@ export const Sucesso: Story = {
     trigger: <Button variant="primary" outline label="Verificar Status" iconLeft={ShieldAlert} />
   },
 };
-
-/**
- * **Modo Controlado**
- * 
- * Demonstrando como o Modal se comporta quando o estado é gerenciado externamente.
- */
-export const EstadoControlado: Story = {
-  name: 'Aberto Via Estado',
-  args: {
-    open: true,
-    title: 'Controle de Fluxo',
-    description: 'Este modal está aberto porque a propriedade "open" está como true no Storybook.',
-    confirmLabel: 'Fechar',
-  },
-};

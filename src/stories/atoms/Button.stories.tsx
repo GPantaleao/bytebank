@@ -1,167 +1,133 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Plus, Trash2, ArrowRight, Save, Send, ChevronLeft } from 'lucide-react';
+import { Plus, Trash2, ArrowRight } from 'lucide-react';
 import { Button } from '@/app/components/atoms/Button';
-
 /**
- * # Button Atom
- * 
- * O `Button` é o principal ponto de interatividade do usuário. Ele comunica ações e gatilhos em toda a interface.
- * 
- * ## Hierarquia Visual
- * - **Primary**: Ação principal da página. Use apenas uma vez por contexto.
- * - **Secondary**: Ações de suporte.
- * - **Ghost/Outline**: Ações secundárias ou de navegação.
- * - **Danger**: Ações destrutivas ou irreversíveis.
- */
+O componente Button é o elemento interativo primário da aplicação.
+Projetado para suportar diversas variantes visuais (Primary, Secondary, Danger, etc),
+formatos (retangular ou arredondado) e ícones (esquerda ou direita).
+*/
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
   parameters: {
     layout: 'centered',
     docs: {
-      subtitle: 'Componente de ação versátil com suporte a variantes semânticas.',
       description: {
-        component: 'Totalmente acessível, suporta estados de foco, hover e pressionado. Integrado com Lucide React para iconografia consistente.',
+        component: 'Botão altamente customizável com suporte a ícones do Lucide React, diferentes pesos semânticos (variantes) e modos visuais (solid, outline, ghost).',
       },
     },
   },
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      name: 'Variante Semântica',
-      description: 'Define o peso visual e o contexto da ação.',
+      description: 'Define a cor e a semântica do botão.',
       control: 'select',
       options: ['primary', 'secondary', 'danger', 'default', 'ghost'],
-      table: { category: 'Aparência', defaultValue: { summary: 'primary' } },
+      table: { defaultValue: { summary: 'primary' } },
     },
     outline: {
-      name: 'Modo Outline',
-      description: 'Remove o fundo sólido e adiciona bordas.',
+      description: 'Se verdadeiro, o botão terá um fundo transparente e bordas na cor da variante.',
       control: 'boolean',
-      table: { category: 'Aparência', defaultValue: { summary: 'false' } },
+      table: { defaultValue: { summary: 'false' } },
     },
     rounded: {
-      name: 'Circular (Icon Button)',
-      description: 'Transforma o botão em um círculo perfeito.',
+      description: 'Se verdadeiro, transforma o botão num círculo perfeito (ideal para icon-buttons).',
       control: 'boolean',
-      table: { category: 'Aparência', defaultValue: { summary: 'false' } },
+      table: { defaultValue: { summary: 'false' } },
     },
     label: {
-      name: 'Texto do Botão',
-      description: 'O rótulo principal da ação.',
+      description: 'O texto exibido dentro do botão.',
       control: 'text',
-      table: { category: 'Conteúdo' },
     },
     iconLeft: {
-      name: 'Ícone Esquerda',
-      table: { category: 'Conteúdo' },
+      description: 'Ícone (Lucide) renderizado à esquerda do texto.',
       control: { disable: true },
     },
     iconRight: {
-      name: 'Ícone Direita',
-      table: { category: 'Conteúdo' },
+      description: 'Ícone (Lucide) renderizado à direita do texto.',
       control: { disable: true },
     },
   },
 };
-
 export default meta;
 type Story = StoryObj<typeof meta>;
-
 /**
- * **Action: Primary**
- * 
- * Utilize para o fluxo principal (Submit, Próximo, Salvar).
- */
+Variante principal usada para a ação mais importante da tela (Call to Action).
+*/
 export const Primary: Story = {
-  name: 'Principal (CTA)',
   args: {
     variant: 'primary',
-    label: 'Salvar Alterações',
-    iconLeft: Save,
+    label: 'Botão Principal',
   },
 };
-
 /**
- * **Action: Secondary**
- * 
- * Para ações que complementam a principal sem competir por atenção.
- */
+Variante secundária usada para ações alternativas que não devem chamar tanta atenção.
+*/
 export const Secondary: Story = {
-  name: 'Secundário',
   args: {
     variant: 'secondary',
-    label: 'Cancelar',
+    label: 'Botão Secundário',
   },
 };
-
 /**
- * **Action: Danger**
- * 
- * Indica risco. Sempre acompanhado de confirmação em contextos críticos.
- */
+Usada exclusivamente para ações destrutivas, como excluir ou deletar itens.
+*/
 export const Danger: Story = {
-  name: 'Destrutivo',
   args: {
     variant: 'danger',
-    label: 'Apagar Registro',
+    label: 'Excluir',
     iconLeft: Trash2,
   },
 };
-
 /**
- * **Estilo: Outline**
- * 
- * Reduz a carga cognitiva em interfaces densas.
- */
+Variante padrão de sistema, neutra.
+*/
+export const Default: Story = {
+  args: {
+    variant: 'default',
+    label: 'Padrão',
+  },
+};
+/**
+Estilo sem preenchimento, focado na borda. Ótimo em fundos brancos ou claros.
+*/
 export const Outline: Story = {
-  name: 'Contorno (Outline)',
   args: {
     variant: 'primary',
     outline: true,
-    label: 'Exportar PDF',
-    iconRight: Send,
+    label: 'Contorno',
   },
 };
-
 /**
- * **Estilo: Ghost**
- * 
- * Ideal para navegação ou botões dentro de listas/tabelas.
- */
+Variante Ghost é um botão sem borda e sem fundo até o hover. Útil para ações sutis como "Voltar".
+*/
 export const Ghost: Story = {
-  name: 'Sutil (Ghost)',
   args: {
     variant: 'ghost',
-    label: 'Voltar ao Início',
-    iconLeft: ChevronLeft,
+    label: 'Voltar',
+    iconLeft: ArrowRight,
   },
 };
-
 /**
- * **Icon Button**
- * 
- * Ações rápidas e compactas. Requer `aria-label` para acessibilidade.
- */
+Demonstra um botão apenas com ícone circular, ideal para ações rápidas.
+*/
 export const Rounded: Story = {
-  name: 'Botão de Ícone',
+  name: 'Ícone Arredondado',
   args: {
     variant: 'primary',
     rounded: true,
     iconLeft: Plus,
+    'aria-label': 'Adicionar',
   },
 };
-
 /**
- * **Fluxo de Navegação**
- * 
- * Combinação de texto e ícone à direita para indicar progressão.
- */
+Demonstra o uso de um ícone à direita do texto (ideal para avanço de tela).
+*/
 export const ComIconDireita: Story = {
-  name: 'Progressão',
+  name: 'Com ícone à direita',
   args: {
-    variant: 'default',
-    label: 'Continuar para Pagamento',
+    variant: 'primary',
+    label: 'Continuar',
     iconRight: ArrowRight,
   },
 };

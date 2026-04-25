@@ -15,55 +15,42 @@ const transactionOptions = [
   { value: 'deposito', label: 'Depósito' },
 ];
 
+// Wrapper para manter o estado e limitar a largura (evita que o select estique na tela toda)
 const SelectWrapper = (args: any) => {
   const [value, setValue] = useState(args.value ?? '');
-  return <Select {...args} value={value} onChange={setValue} />;
+  return (
+    <div className="w-full max-w-[280px]">
+      <Select {...args} value={value} onChange={setValue} />
+    </div>
+  );
 };
 
-/**
- * # Select Atom
- * 
- * O `Select` é um componente de entrada que permite ao usuário escolher uma opção em uma lista pré-definida.
- * 
- * ## Design & Acessibilidade
- * - **Interação**: Feedback visual no hover e foco com anéis de luz indigo.
- * - **Estética**: Bordas arredondadas (Pill shape) para manter consistência com o `TransactionCard`.
- * - **Tipografia**: Uso de labels em uppercase com tracking aumentado para facilitar o escaneamento de campos.
- */
 const meta: Meta<typeof Select> = {
   title: 'Atoms/Select',
   component: Select,
   parameters: {
     layout: 'centered',
-    docs: {
-      subtitle: 'Seletor de opções com interface refinada.',
-      description: {
-        component: 'Dropdown estilizado que substitui o visual padrão do navegador por um design moderno e limpo, sem perder a funcionalidade nativa de acessibilidade.',
-      },
+    // Fundo levemente acinzentado para destacar o Select que é Gray-50/Branco
+    backgrounds: {
+      default: 'light',
+      values: [{ name: 'light', value: '#fcfcfc' }],
     },
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div className="p-10 border border-dashed border-gray-200 rounded-xl bg-white shadow-sm flex justify-center min-w-[400px]">
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
-    options: {
-      name: 'Lista de Opções',
-      description: 'Array de objetos { value, label }.',
-      table: { category: 'Conteúdo' },
-    },
-    value: {
-      name: 'Valor Atual',
-      description: 'Controla qual opção está selecionada.',
-      table: { category: 'Lógica' },
-    },
-    label: {
-      name: 'Rótulo (Label)',
-      description: 'Texto descritivo posicionado acima do campo.',
-      table: { category: 'Conteúdo' },
-    },
-    placeholder: {
-      name: 'Texto de Placeholder',
-      description: 'Dica exibida quando o campo está vazio.',
-      table: { category: 'Conteúdo' },
-    },
+    options: { name: 'Opções' },
+    value: { name: 'Valor Atual' },
+    label: { name: 'Rótulo (Label)' },
+    placeholder: { name: 'Placeholder' },
+    className: { table: { disable: true } },
+    buttonClassName: { table: { disable: true } },
   },
   render: (args) => <SelectWrapper {...args} />,
 };
@@ -73,8 +60,7 @@ type Story = StoryObj<typeof meta>;
 
 /**
  * **Categorização Financeira**
- * 
- * Utilizado para classificar transações em grupos específicos.
+ * Exemplo padrão com rótulo superior e lista de categorias.
  */
 export const Categorias: Story = {
   name: 'Seleção de Categorias',
@@ -88,8 +74,7 @@ export const Categorias: Story = {
 
 /**
  * **Contexto de Transação**
- * 
- * Configuração compacta para definir o tipo de movimentação.
+ * Configuração utilizada para definir o tipo de movimentação financeira.
  */
 export const TipoTransacao: Story = {
   name: 'Tipo de Transação',
@@ -101,9 +86,8 @@ export const TipoTransacao: Story = {
 };
 
 /**
- * **Estilo: Clean**
- * 
- * Versão sem label, ideal para uso dentro de formulários densos ou cabeçalhos de tabela.
+ * **Minimalista**
+ * Versão sem rótulo, ideal para filtros rápidos ou cabeçalhos de tabelas.
  */
 export const SemLabel: Story = {
   name: 'Minimalista (Sem Label)',
@@ -111,5 +95,49 @@ export const SemLabel: Story = {
     options: categoryOptions,
     value: '',
     placeholder: 'Filtrar por...',
+  },
+};
+
+/**
+ * **Visão Geral**
+ * Comparativo dos estados do componente lado a lado.
+ */
+export const VisaoGeral: Story = {
+  name: 'Variações de Estado',
+  render: () => (
+    <div className="flex flex-col gap-8 p-12 w-full max-w-[300px]">
+      <div className="space-y-1">
+        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Estado Inicial</p>
+        <Select
+          options={categoryOptions}
+          value=""
+          onChange={() => { }}
+          placeholder="Selecione..."
+        />
+      </div>
+
+      <div className="space-y-1">
+        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Com Label</p>
+        <Select
+          options={categoryOptions}
+          value="alimentacao"
+          onChange={() => { }}
+          label="Categoria"
+        />
+      </div>
+
+      <div className="space-y-1">
+        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Variação de Botão (Pill)</p>
+        <Select
+          options={transactionOptions}
+          value="transferencia"
+          onChange={() => { }}
+          buttonClassName="rounded-full px-6 border-primary-200"
+        />
+      </div>
+    </div>
+  ),
+  parameters: {
+    controls: { disable: true },
   },
 };
