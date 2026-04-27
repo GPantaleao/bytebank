@@ -6,6 +6,7 @@ import { Select } from '@/app/components/atoms/Select';
 import { Button } from '@/app/components/atoms/Button';
 import { ITransaction } from '@/types/transaction';
 import { maskCurrency, parseCurrency } from '@/utils/currencyFormatter';
+import { transactionService } from '@/services/transactionService';
 
 const typeOptions: { value: ITransaction['type']; label: string }[] = [
   { value: 'deposito', label: 'Depósito' },
@@ -40,17 +41,28 @@ export const TransactionCard = ({ title = 'Nova transação', onSubmit }: Transa
     e.preventDefault();
     if (!isValid || isSubmitting) return;
 
-    // flushSync força o React a renderizar "Processando..." antes do await
     flushSync(() => setStatus('submitting'));
 
     try {
-      await onSubmit?.({ type: type as ITransaction['type'], amount: parseCurrency(amountDisplay) });
+      const amount = parseCurrency(amountDisplay);
+      const transactionType = type as ITransaction['type'];
+
+      const newTransaction: Omit<ITransaction, 'id'> = {
+        amount,
+        type: transactionType,
+        date: new Date().toISOString(),
+        description: transactionType === 'deposito' ? 'Depósito' : 'Transferência',
+      };
+
+      await transactionService.create(newTransaction);
+      await onSubmit?.({ type: transactionType, amount });
+
       setType('');
       setAmountDisplay('');
       setStatus('success');
-      // Volta ao idle após 3 segundos
       setTimeout(() => setStatus('idle'), 3000);
-    } catch {
+    } catch (error) {
+      console.error('Failed to create transaction:', error);
       setStatus('idle');
     }
   };

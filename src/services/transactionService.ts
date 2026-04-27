@@ -4,6 +4,49 @@ const BASE_URL = "http://localhost:3001";
 
 export const transactionService = {
   /**
+   * Busca todas as transações
+   */
+  async getAll(): Promise<ITransaction[]> {
+    try {
+      const response = await fetch(`${BASE_URL}/transactions`, {
+        method: 'GET',
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error(`Falha ao buscar transações: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao buscar transações:', error);
+      throw error;
+    }
+  },
+
+  /**
+   * Cria uma nova transação
+   */
+  async create(data: Omit<ITransaction, 'id'>): Promise<ITransaction> {
+    try {
+      const response = await fetch(`${BASE_URL}/transactions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Falha ao criar transação: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao criar transação:', error);
+      throw error;
+    }
+  },
+
+  /**
    * Busca uma transação pelo ID
    */
   async getById(id: string): Promise<ITransaction | null> {
