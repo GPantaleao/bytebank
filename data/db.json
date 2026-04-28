@@ -33,60 +33,11 @@
       "category": "Lazer"
     },
     {
-      "amount": 10,
+      "amount": 100,
       "type": "transferencia",
-      "date": "2026-04-27T20:31:31.086Z",
+      "date": "2026-04-28T12:54:52.345Z",
       "description": "Transferência",
-      "id": "sy7w5c7kXgs"
-    },
-    {
-      "amount": 1000,
-      "type": "transferencia",
-      "date": "2026-04-27T20:31:41.072Z",
-      "description": "Transferência",
-      "id": "7U2AaMja7zk"
-    },
-    {
-      "amount": 1223.13,
-      "type": "deposito",
-      "date": "2026-04-27T20:31:50.413Z",
-      "description": "Depósito",
-      "id": "_p-JnmFiM_k"
-    },
-    {
-      "amount": 1341.23,
-      "type": "transferencia",
-      "date": "2026-04-27T20:36:06.488Z",
-      "description": "Transferência",
-      "id": "EPpXkjpH538"
-    },
-    {
-      "amount": 0.01,
-      "type": "deposito",
-      "date": "2026-04-27T20:36:11.679Z",
-      "description": "Depósito",
-      "id": "QgzD4Awd7oE"
-    },
-    {
-      "amount": 8000,
-      "type": "deposito",
-      "date": "2026-04-27T20:36:19.496Z",
-      "description": "Depósito",
-      "id": "niP7HtmdKyk"
-    },
-    {
-      "amount": 9000,
-      "type": "transferencia",
-      "date": "2026-04-27T20:36:26.619Z",
-      "description": "Transferência",
-      "id": "38P2yvZ1HgA"
-    },
-    {
-      "amount": 200,
-      "type": "transferencia",
-      "date": "2026-04-27T20:36:36.025Z",
-      "description": "Transferência",
-      "id": "xr2G-bWFF3o"
+      "id": "fuscfgbl0-0"
     }
   ],
   "accounts": [
