@@ -101,7 +101,7 @@ export const TransactionDetailCard = ({
   const handleDelete = async () => {
     const success = await transactionService.delete(transaction.id);
     if (success) {
-      router.push('/extrato');
+      router.push('/transactions');
       router.refresh();
     } else {
       alert("Erro ao excluir a transação.");
@@ -233,7 +233,7 @@ export const TransactionDetailCard = ({
         <div className="mt-10 text-center">
           <Button 
             variant="ghost" 
-            onClick={() => router.push('/extrato')} 
+            onClick={() => router.push('/transactions')} 
             className="mx-auto"
             label="Voltar para o extrato"
             iconLeft={ArrowLeft}
