@@ -1,32 +1,23 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { SaldoDashboard } from "./components/molecules/SaldoDashboard";
 import { TransactionCard } from "./components/molecules/TransactionCard";
 import { Extrato } from "./components/organisms/Extrato";
 import { formatCurrency } from "@/utils/currencyFormatter";
+import { useTransaction } from "@/hooks/useTransaction";
 
 interface ExtratoHandle {
   refetch: () => Promise<void>;
 }
 
 export default function Home() {
-  const [saldo, setSaldo] = useState(2500);
-  const [receitas, setReceitas] = useState(1500);
-  const [despesas, setDespesas] = useState(500);
+  const { saldo, despesas, receitas, refresh } = useTransaction();
   const extratoRef = useRef<ExtratoHandle>(null);
 
-  const handleTransaction = async (data: { type: 'deposito' | 'transferencia', amount: number }) => {
+  const handleTransaction = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    if (data.type === 'deposito') {
-      setSaldo(prev => prev + data.amount);
-      setReceitas(prev => prev + data.amount);
-    } else if (data.type === 'transferencia') {
-      setSaldo(prev => prev - data.amount);
-      setDespesas(prev => prev + data.amount);
-    }
-
+    refresh();
     extratoRef.current?.refetch();
   };
 
