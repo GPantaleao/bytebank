@@ -21,9 +21,9 @@ interface SaldoDashboardProps {
 }
 
 export const SaldoDashboard = ({
-  saldo = "2.500,00",
-  receitas = "1.500,00",
-  despesas = "500,00",
+  saldo,
+  receitas,
+  despesas,
   metaMensagem = "Seu saldo superou a meta do mês.\nVocê mandou muito bem!",
 }: SaldoDashboardProps) => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
@@ -64,7 +64,7 @@ export const SaldoDashboard = ({
       </div>
 
       {/* PARTE CENTRAL: Card de Receitas e Despesas */}
-      <div className="relative z-10 w-[350px] h-[100px] bg-white rounded-[15px] shadow-strong flex items-center p-4">
+      <div className="relative z-10 w-[380px] h-[100px] bg-white rounded-[15px] shadow-strong flex items-center p-4">
         {/* Receitas */}
         <div className="flex-1 flex items-center gap-4">
          <ArrowUp size={34}className="text-primary-600"/>
@@ -92,7 +92,7 @@ export const SaldoDashboard = ({
       </div>
 
       {/* PARTE INFERIOR: Logo e Mensagem */}
-      <div className="relative z-10 flex items-center gap-8">
+      <div className="relative z-10 flex items-center gap-4">
         <div className="relative w-[114px] h-[99px]">
           <Image src={logoBranco2} alt="Logo" fill className="object-contain" />
         </div>

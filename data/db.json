@@ -10,7 +10,7 @@
     },
     {
       "id": "2",
-      "amount": 150.5,
+      "amount": 1500.62,
       "type": "deposito",
       "date": "2026-04-22T10:15:00Z",
       "description": "Supermercado",
@@ -38,6 +38,13 @@
       "date": "2026-04-28T12:54:52.345Z",
       "description": "Transferência",
       "id": "fuscfgbl0-0"
+    },
+    {
+      "amount": 1234.56,
+      "type": "deposito",
+      "date": "2026-04-29T02:15:31.006Z",
+      "description": "Depósito",
+      "id": "BX4LHDFZego"
     }
   ],
   "accounts": [

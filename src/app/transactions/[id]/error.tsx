@@ -47,7 +47,7 @@ export default function TransactionDetailError({
             variant="default"
             outline
             className="flex-1"
-            onClick={() => router.push("/extrato")}
+            onClick={() => router.push("/transactions")}
             label="Voltar para extrato"
             iconLeft={ArrowLeft}
           />
