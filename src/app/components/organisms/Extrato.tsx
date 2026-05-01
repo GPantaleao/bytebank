@@ -8,6 +8,8 @@ import { transactionService } from "@/services/transactionService";
 import { ITransaction } from "@/types/transaction";
 import { formatCurrency } from "@/utils/currencyFormatter";
 import { formatDate } from "@/utils/dateFormatter";
+import { Modal } from "../atoms/Modal";
+import { TransactionDetailCard } from "./TransactionDetailCard";
 
 const MONTHS = [
   { value: "0", label: "Janeiro" },
@@ -28,6 +30,10 @@ export const Extrato = forwardRef((_, ref) => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Modal state
+  const [selectedTransaction, setSelectedTransaction] = useState<ITransaction | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loadTransactions = useCallback(async () => {
     try {
@@ -56,6 +62,23 @@ export const Extrato = forwardRef((_, ref) => {
     const transactionMonth = new Date(t.date).getMonth();
     return transactionMonth === parseInt(selectedMonth);
   });
+
+  const handleTransactionClick = (transaction: ITransaction) => {
+    setSelectedTransaction(transaction);
+    setIsModalOpen(true);
+  };
+
+  const handleEditSuccess = (updated: ITransaction) => {
+    setTransactions(prev => prev.map(t => t.id === updated.id ? updated : t));
+    setSelectedTransaction(updated);
+  };
+
+  const handleDeleteSuccess = () => {
+    if (selectedTransaction) {
+      setTransactions(prev => prev.filter(t => t.id !== selectedTransaction.id));
+    }
+    setIsModalOpen(false);
+  };
 
   return (
     <section className="w-[890px] bg-white rounded-[15px] shadow-strong p-8 flex flex-col gap-6">
@@ -94,7 +117,8 @@ export const Extrato = forwardRef((_, ref) => {
               return (
                 <div
                   key={transaction.id}
-                  className={`flex flex-col items-start gap-3 px-6 py-4 border-b border-gray-200 ${
+                  onClick={() => handleTransactionClick(transaction)}
+                  className={`flex flex-col items-start gap-3 px-6 py-4 border-b border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors ${
                     !isLastInRow ? "border-r border-gray-200" : ""
                   }`}
                 >
@@ -124,6 +148,21 @@ export const Extrato = forwardRef((_, ref) => {
           </div>
         )}
       </div>
+
+      <Modal 
+        open={isModalOpen} 
+        onOpenChange={setIsModalOpen}
+        title="Detalhes da Transação"
+        maxWidth="max-w-3xl"
+        showCloseButton
+      >
+        <TransactionDetailCard 
+          transaction={selectedTransaction}
+          onEditSuccess={handleEditSuccess}
+          onDeleteSuccess={handleDeleteSuccess}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </section>
   );
 });

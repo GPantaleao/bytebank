@@ -33,7 +33,7 @@ export default function HomePage() {
               : "Seu saldo superou a meta do mês.\nVocê mandou muito bem!"
           }
         />
-        <div className="pl-6 absolute right-7 top-1/2 -translate-y-1/2 z-50">
+        <div className="pl-6 absolute right-7 top-1/2 -translate-y-1/2 z-40">
           <TransactionCard onSubmit={handleTransaction} />
         </div>
       </div>
