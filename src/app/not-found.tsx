@@ -4,7 +4,7 @@ import { Home, AlertTriangle } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="container p-12 flex flex-col items-center justify-center min-h-[80vh]">
+    <div className="main-content min-h-screen p-12 flex flex-col items-center justify-center">
       <main className="max-w-2xl w-full mx-auto bg-white p-8 rounded-lg shadow-soft border border-gray-100 text-center">
         <div className="flex justify-center mb-6">
           <div className="bg-red-100 text-red-700 rounded-full p-4">
@@ -20,7 +20,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-12 justify-center">
           <Link href="/" className="flex-1">
             <Button 
-              label="Ir para a Home" 
+              label="Ir para a pagina inicial" 
               iconLeft={Home}
               variant="primary"
               className="w-full"

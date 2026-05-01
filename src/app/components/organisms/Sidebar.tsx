@@ -10,7 +10,7 @@ import line1 from "@/app/assets/line-1.png";
 import avatar from "@/app/assets/avatar.png";
 
 const navLinks = [
-  { href: "/", label: "Início" },
+  { href: "/home", label: "Início" },
   { href: "/transactions", label: "Transferências" },
   { href: "/investments", label: "Investimentos" },
   { href: "/other-services", label: "Outros serviços" },

@@ -36,7 +36,7 @@ export const Button = ({
       outline: 'border-red-600 text-red-600 hover:bg-red-50'
     },
     default: {
-      solid: 'bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-200',
+      solid: 'bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-200 text-primary-600',
       outline: 'border-gray-300 text-gray-600 hover:bg-gray-100'
     },
     ghost: {
