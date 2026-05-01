@@ -26,15 +26,15 @@ const vantagens = [
 
 export default function Vantagens() {
   return (
-    <section className="hero-bg py-16 px-4">
+    <section className="hero-bg px-4">
       <h3 className="text-2xl font-bold text-gray-700 mb-10 text-center">
         Vantagens do nosso banco:
       </h3>
       <div className="grid md:grid-cols-4 gap-10 max-w-6xl mx-auto">
         {vantagens.map((v) => (
-          <div key={v.titulo} className="flex flex-col items-center">
+          <div key={v.titulo} className="flex flex-col items-center gap-3">
             <Image src={v.img} alt={v.titulo} width={64} height={64} className="object-contain mb-2" />
-            <h4 className="font-semibold mb-2 text-[var(--color-golden-600)]">{v.titulo}</h4>
+            <h4 className="font-extrabold mb-2 text-[var(--color-golden-600)]">{v.titulo}</h4>
             <p className="text-sm text-gray-700 text-center">{v.texto}</p>
           </div>
         ))}
