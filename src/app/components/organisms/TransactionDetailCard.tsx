@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { 
   Utensils, 
   Gamepad2, 
@@ -10,7 +9,6 @@ import {
   Package, 
   Pencil, 
   Trash2, 
-  ArrowLeft,
   Check,
   X,
   LucideIcon 
@@ -30,6 +28,8 @@ interface TransactionDetailCardProps {
   transaction?: ITransaction | null;
   isLoading?: boolean;
   onEditSuccess?: (updated: ITransaction) => void;
+  onDeleteSuccess?: () => void;
+  onClose?: () => void;
   className?: string;
 }
 
@@ -45,10 +45,10 @@ export const TransactionDetailCard = ({
   transaction, 
   isLoading,
   onEditSuccess,
+  onDeleteSuccess,
+  onClose,
   className = ""
 }: TransactionDetailCardProps) => {
-  const router = useRouter();
-
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     description: transaction?.description || "",
@@ -59,7 +59,7 @@ export const TransactionDetailCard = ({
 
   if (isLoading || !transaction) {
     return (
-      <main className={`max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-soft ${className}`}>
+      <main className={`bg-white p-8 rounded-lg ${className}`}>
         <div className="flex items-center justify-between mb-4">
           <Skeleton className="h-7 w-48" />
           <Skeleton className="h-7 w-24 rounded-full" />
@@ -91,7 +91,6 @@ export const TransactionDetailCard = ({
     const updated = await transactionService.update(transaction.id, editData);
     if (updated) {
       setIsEditing(false);
-      router.refresh();
       if (onEditSuccess) onEditSuccess(updated);
     } else {
       alert("Erro ao atualizar transação.");
@@ -101,8 +100,8 @@ export const TransactionDetailCard = ({
   const handleDelete = async () => {
     const success = await transactionService.delete(transaction.id);
     if (success) {
-      router.push('/transactions');
-      router.refresh();
+      if (onDeleteSuccess) onDeleteSuccess();
+      if (onClose) onClose();
     } else {
       alert("Erro ao excluir a transação.");
     }
@@ -112,8 +111,8 @@ export const TransactionDetailCard = ({
   const categoryConfig = categoryIcons[categoryName] || categoryIcons['Outros'];
 
   return (
-    <main className={`max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-soft ${className}`}>
-      <div className="flex items-center justify-between mb-4">
+    <main className={`bg-white p-8 rounded-lg ${className}`}>
+      <div className="flex items-center justify-between mb-4 pr-12">
         {isEditing ? (
           <>
             <input
@@ -214,6 +213,8 @@ export const TransactionDetailCard = ({
             <Modal 
               title="Excluir transação"
               description="Deseja realmente excluir esta transação?"
+              overlayClassName="bg-black/60 backdrop-blur-sm z-50"
+              className="shadow-2xl!"
               onConfirm={handleDelete}
               trigger={
                 <Button 
@@ -228,18 +229,6 @@ export const TransactionDetailCard = ({
           </>
         )}
       </div>
-
-      {!isEditing && (
-        <div className="mt-10 text-center">
-          <Button 
-            variant="ghost" 
-            onClick={() => router.push('/transactions')} 
-            className="mx-auto"
-            label="Voltar para o extrato"
-            iconLeft={ArrowLeft}
-          />
-        </div>
-      )}
     </main>
   );
 };

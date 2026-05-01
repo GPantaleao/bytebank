@@ -9,6 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconLeft?: LucideIcon;
   iconRight?: LucideIcon;
   className?: string;
+  classNameIcon?: string;
 }
 
 export const Button = ({ 
@@ -18,7 +19,8 @@ export const Button = ({
   label, 
   iconLeft: IconLeft, 
   iconRight: IconRight,
-  className = '', 
+  className = '',
+  classNameIcon = '',
   ...props 
 }: ButtonProps) => {
   
@@ -59,9 +61,9 @@ export const Button = ({
       aria-label={label}
       {...props}
     >
-      {IconLeft && <IconLeft size={18} />}
+      {IconLeft && <IconLeft size={18} className={classNameIcon} />}
       {label && <span>{label}</span>}
-      {IconRight && <IconRight size={18} />}
+      {IconRight && <IconRight size={18} className={classNameIcon} />}
     </button>
   );
 };
