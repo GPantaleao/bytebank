@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, forwardRef, useImperativeHandle, useCallback } from "react";
-import { Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/app/components/atoms/Button";
 import { Select } from "@/app/components/atoms/Select";
 import { transactionService } from "@/services/transactionService";
@@ -10,6 +10,10 @@ import { formatCurrency } from "@/utils/currencyFormatter";
 import { formatDate } from "@/utils/dateFormatter";
 import { Modal } from "../atoms/Modal";
 import { TransactionDetailCard } from "./TransactionDetailCard";
+
+interface ExtratoProps {
+  limit?: number;
+}
 
 const MONTHS = [
   { value: "0", label: "Janeiro" },
@@ -26,7 +30,7 @@ const MONTHS = [
   { value: "11", label: "Dezembro" },
 ];
 
-export const Extrato = forwardRef((_, ref) => {
+export const Extrato = forwardRef<any, ExtratoProps>(({ limit }, ref) => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +67,12 @@ export const Extrato = forwardRef((_, ref) => {
     return transactionMonth === parseInt(selectedMonth);
   });
 
+  const displayedTransactions = limit
+    ? filteredTransactions.slice(0, limit)
+    : filteredTransactions;
+
+  const hasMore = limit && filteredTransactions.length > limit;
+
   const handleTransactionClick = (transaction: ITransaction) => {
     setSelectedTransaction(transaction);
     setIsModalOpen(true);
@@ -84,11 +94,7 @@ export const Extrato = forwardRef((_, ref) => {
     <section className="w-[890px] bg-white rounded-[15px] shadow-strong p-8 flex flex-col gap-6">
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h2 className="text-xl font-bold text-gray-900">Extrato</h2>
-          <Button variant="primary" rounded iconLeft={Pencil} />
-          <Button variant="danger" rounded iconLeft={Trash2} />
-        </div>
+        <h2 className="text-xl font-bold text-gray-900">Extrato</h2>
         {selectedMonth && (
           <Select
             options={MONTHS}
@@ -100,7 +106,7 @@ export const Extrato = forwardRef((_, ref) => {
         )}
       </div>
 
-      <div className="border-t border-gray-200">
+      <div className="border-t border-gray-200 pt-6">
         {isLoading ? (
           <div className="text-center text-gray-500 py-8">
             Carregando transações...
@@ -110,42 +116,47 @@ export const Extrato = forwardRef((_, ref) => {
             Nenhuma transação neste mês.
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-0">
-            {filteredTransactions.map((transaction, index) => {
-              const isLastInRow = (index + 1) % 4 === 0;
-
-              return (
-                <div
+          <>
+            <ul className="space-y-3">
+              {displayedTransactions.map((transaction) => (
+                <li
                   key={transaction.id}
                   onClick={() => handleTransactionClick(transaction)}
-                  className={`flex flex-col items-start gap-3 px-6 py-4 border-b border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors ${
-                    !isLastInRow ? "border-r border-gray-200" : ""
-                  }`}
+                  className="flex items-center justify-between px-5 py-4 bg-gray-50 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-100 hover:border-gray-300 transition-colors"
                 >
-                  <div className="flex items-center justify-between w-full gap-6">
-                    <p className="text-sm font-semibold text-gray-700 whitespace-nowrap">
-                      {transaction.type === "deposito"
-                        ? "Depósito"
-                        : "Transferência"}
-                    </p>
-                    <p className="text-xs text-gray-400 whitespace-nowrap">
-                      {formatDate(transaction.date, "DD/MM")}
-                    </p>
+                  <div className="flex items-center gap-4 flex-1">
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm font-semibold text-gray-700">
+                        {transaction.type === "deposito"
+                          ? "Depósito"
+                          : "Transferência"}
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        {formatDate(transaction.date, "DD/MM/YYYY")}
+                      </p>
+                    </div>
                   </div>
                   <p
-                    className={`font-bold text-sm ${
+                    className={`font-bold text-sm whitespace-nowrap ${
                       transaction.type === "deposito"
                         ? "text-[#62e50a]"
                         : "text-[#eb0e0e]"
                     }`}
                   >
-                    {transaction.type === "deposito" ? "R$" : "-R$"}
-                    {formatCurrency(transaction.amount)}
+                    {transaction.type === "deposito" ? "+" : "-"}
+                    R$ {formatCurrency(transaction.amount)}
                   </p>
-                </div>
-              );
-            })}
-          </div>
+                </li>
+              ))}
+            </ul>
+            {hasMore && (
+              <div className="flex justify-center mt-6 pt-6 border-t border-gray-200">
+                <Link href="/transactions">
+                  <Button variant="primary" label="Ver mais" />
+                </Link>
+              </div>
+            )}
+          </>
         )}
       </div>
 
