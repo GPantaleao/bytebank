@@ -37,7 +37,7 @@ export default function HomePage() {
           <TransactionCard onSubmit={handleTransaction} />
         </div>
       </div>
-      <Extrato ref={extratoRef} />
+      <Extrato ref={extratoRef} limit={5} />
     </div>
   );
 }
