@@ -21,7 +21,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative w-fit left-20 top-10 flex flex-col gap-6">
+    <div className="w-full max-w-[980px] px-6 py-10 flex flex-col gap-6">
       <div className="relative">
         <SaldoDashboard
           saldo={formatCurrency(saldo)}

@@ -29,7 +29,7 @@ export const SaldoDashboard = ({
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
   return (
-    <section className="relative w-[890px] h-[485px] bg-primary-600 rounded-[15px] overflow-hidden p-12 flex flex-col justify-between shadow-strong">
+    <section className="relative w-full max-w-[890px] h-[485px] bg-primary-600 rounded-[15px] overflow-hidden p-12 flex flex-col justify-between shadow-strong">
 
       <div className="relative z-10 w-fit">
         <div className="flex items-center gap-20 mb-4">
