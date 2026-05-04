@@ -18,9 +18,9 @@ export default function NotFound() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-12 justify-center">
-          <Link href="/" className="flex-1">
+          <Link href="/home" className="flex-1">
             <Button 
-              label="Ir para a pagina inicial" 
+              label="Ir para a página inicial" 
               iconLeft={Home}
               variant="primary"
               className="w-full"
