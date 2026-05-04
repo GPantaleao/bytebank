@@ -1,35 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bytebank - Planner Financeiro
 
-## Getting Started
-First, run the development server:
+> Aplicação web de gestão financeira pessoal desenvolvida com **Next.js 16**, **TypeScript** e **Tailwind CSS v4**.  
+> Permite ao usuário acompanhar seu saldo, registrar depósitos e transferências, visualizar o extrato por mês e gerenciar cada transação com edição e exclusão.
+
+
+## 🗂️ Estrutura do Projeto
+
+```
+bytebank/
+├── data/
+│   └── db.json              # Banco de dados local (JSON Server)
+├── public/
+│   └── images/              # Imagens públicas (logo, ícones, ilustrações)
+└── src/
+    └── app/
+        ├── (dashboard)/     # Rotas autenticadas (home, extrato, transações)
+        ├── assets/          # Assets internos (background, avatars)
+        ├── components/
+        │   ├── atoms/       # Button, Badge, Modal, Select, Skeleton
+        │   ├── molecules/   # SaldoDashboard, TransactionCard, TransactionAmount
+        │   └── organisms/   # Header, Footer, Hero, Sidebar, Extrato, TransactionDetailCard
+        ├── hooks/           # useTransaction
+        ├── services/        # transactionService, accountService
+        ├── types/           # ITransaction, etc.
+        └── utils/           # currencyFormatter, dateFormatter
+    └── stories/             # Storybook (Atoms, Molecules, Organisms)
+```
+### Páginas disponíveis
+
+| Rota | Descrição |
+|---|---|
+| `/` | Landing page pública |
+| `/home` | Dashboard principal |
+| `/transactions` | Tela de extrato completo |
+---
+## 🚀 Como Rodar o Projeto
+
+### Pré-requisitos
+
+- **Node.js** v18 ou superior
+- **npm** v9 ou superior
+
+### 1. Instalar as dependências
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Rodar tudo de uma vez ou separadamente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O comando abaixo inicia o **frontend**, o **JSON Server** e o **Storybook** simultaneamente:
 
-## Learn More
+```bash
+npm run dev:all
+```
 
-To learn more about Next.js, take a look at the following resources:
+| Serviço | Endereço |
+|---|---|
+| Frontend (Next.js) | http://localhost:3000 |
+| JSON Server (API) | http://localhost:3001 |
+| Storybook | http://localhost:6006 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📦 Scripts disponíveis
 
-## Deploy on Vercel
+| Script | Descrição |
+|---|---|
+| `npm run dev` | Inicia o frontend Next.js |
+| `npm run dev:server` | Inicia o JSON Server na porta 3001 |
+| `npm run dev:storybook` | Inicia o frontend + Storybook |
+| `npm run dev:all` | Inicia frontend + JSON Server + Storybook |
+| `npm run build` | Gera o build de produção do Next.js |
+| `npm run storybook` | Inicia o Storybook na porta 6006 |
+| `npm run build-storybook` | Gera o build estático do Storybook |
+| `npm run chromatic` | Publica o Storybook no Chromatic |
+| `npm run lint` | Verifica o código com ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Documentação de frameworks
+
+| Tecnologia | Versão | Uso |
+|---|---|---|
+| [Next.js](https://nextjs.org/) | 16.2.3 | Framework frontend (App Router) |
+| [React](https://react.dev/) | 19.2.4 | Biblioteca de UI |
+| [TypeScript](https://www.typescriptlang.org/) | ^5 | Tipagem estática |
+| [Tailwind CSS](https://tailwindcss.com/) | ^4 | Estilização utilitária |
+| [Radix UI](https://www.radix-ui.com/) | ^1/^2 | Componentes acessíveis (Modal, Select) |
+| [Lucide React](https://lucide.dev/) | ^1.8 | Ícones SVG |
+| [JSON Server](https://github.com/typicode/json-server) | ^1.0.0-beta | API REST local para desenvolvimento |
+| [Storybook](https://storybook.js.org/) | ^10.3 | Documentação de componentes |
+| [Chromatic](https://www.chromatic.com/) | ^16 | Testes visuais e CI do Storybook |
+| [Vitest](https://vitest.dev/) | ^4 | Testes unitários |
+| [Playwright](https://playwright.dev/) | ^1.59 | Testes E2E |
+
+
+
+## 👥 Equipe de Desenvolvimento
+
+| Nome | RM |
+|---|---|
+| Amanda de Morais Vieira | 371614 |
+| Camilla Tauany Ribeiro Gomes | 371254 |
+| Gustavo Souza Silva Pantaleão | 370998 |
+| Isabella Falanque Côrtes Arantes | 372374 |
+| Lucas Nery de Araujo | 371141 |
+
+---
+---
+
+
