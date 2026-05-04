@@ -91,7 +91,7 @@ export const Extrato = forwardRef<any, ExtratoProps>(({ limit }, ref) => {
   };
 
   return (
-    <section className="w-full max-w-[890px] bg-white rounded-[15px] shadow-strong p-8 flex flex-col gap-6">
+    <section className="w-full bg-white rounded-[15px] shadow-strong p-8 flex flex-col gap-6">
 
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-gray-900">Extrato</h2>

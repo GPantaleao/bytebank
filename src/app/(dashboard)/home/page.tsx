@@ -1,8 +1,7 @@
 "use client";
 import { useRef } from "react";
-import { SaldoDashboard } from "@/app/components/molecules/SaldoDashboard";
-import { TransactionCard } from "@/app/components/molecules/TransactionCard";
 import { Extrato } from "@/app/components/organisms/Extrato";
+import { HomeDashboardPanel } from "@/app/components/organisms/HomeDashboardPanel";
 import { formatCurrency } from "@/utils/currencyFormatter";
 import { useTransaction } from "@/hooks/useTransaction";
 
@@ -21,22 +20,18 @@ export default function HomePage() {
   };
 
   return (
-    <div className="w-full max-w-[980px] px-6 py-10 flex flex-col gap-6">
-      <div className="relative">
-        <SaldoDashboard
-          saldo={formatCurrency(saldo)}
-          receitas={formatCurrency(receitas)}
-          despesas={formatCurrency(despesas)}
-          metaMensagem={
-            saldo < 0
-              ? "Atenção: Seu saldo está negativo.\nRecomendamos rever suas despesas."
-              : "Seu saldo superou a meta do mês.\nVocê mandou muito bem!"
-          }
-        />
-        <div className="pl-6 absolute right-7 top-1/2 -translate-y-1/2 z-40">
-          <TransactionCard onSubmit={handleTransaction} />
-        </div>
-      </div>
+    <div className="w-full max-w-285 mx-auto px-6 py-10 flex flex-col gap-6">
+      <HomeDashboardPanel
+        saldo={formatCurrency(saldo)}
+        receitas={formatCurrency(receitas)}
+        despesas={formatCurrency(despesas)}
+        metaMensagem={
+          saldo < 0
+            ? "Atenção: Seu saldo está negativo.\nRecomendamos rever suas despesas."
+            : "Seu saldo superou a meta do mês.\nVocê mandou muito bem!"
+        }
+        onSubmit={handleTransaction}
+      />
       <Extrato ref={extratoRef} limit={5} />
     </div>
   );
