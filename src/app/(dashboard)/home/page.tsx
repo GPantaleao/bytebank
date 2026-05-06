@@ -32,7 +32,7 @@ export default function HomePage() {
         }
         onSubmit={handleTransaction}
       />
-      <Extrato ref={extratoRef} limit={5} />
+      <Extrato ref={extratoRef} limit={5} onTransactionChange={refresh} />
     </div>
   );
 }

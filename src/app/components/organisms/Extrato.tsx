@@ -13,6 +13,7 @@ import { TransactionDetailCard } from "./TransactionDetailCard";
 
 interface ExtratoProps {
   limit?: number;
+  onTransactionChange?: () => void;
 }
 
 const MONTHS = [
@@ -30,7 +31,7 @@ const MONTHS = [
   { value: "11", label: "Dezembro" },
 ];
 
-export const Extrato = forwardRef<any, ExtratoProps>(({ limit }, ref) => {
+export const Extrato = forwardRef<any, ExtratoProps>(({ limit, onTransactionChange }, ref) => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
@@ -81,6 +82,7 @@ export const Extrato = forwardRef<any, ExtratoProps>(({ limit }, ref) => {
   const handleEditSuccess = (updated: ITransaction) => {
     setTransactions(prev => prev.map(t => t.id === updated.id ? updated : t));
     setSelectedTransaction(updated);
+    onTransactionChange?.();
   };
 
   const handleDeleteSuccess = () => {
@@ -88,6 +90,7 @@ export const Extrato = forwardRef<any, ExtratoProps>(({ limit }, ref) => {
       setTransactions(prev => prev.filter(t => t.id !== selectedTransaction.id));
     }
     setIsModalOpen(false);
+    onTransactionChange?.();
   };
 
   return (

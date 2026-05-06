@@ -45,6 +45,28 @@
       "date": "2026-04-29T02:15:31.006Z",
       "description": "Depósito",
       "id": "BX4LHDFZego"
+    },
+    {
+      "amount": 5600,
+      "type": "deposito",
+      "date": "2026-05-06T00:07:50.312Z",
+      "description": "Salario",
+      "id": "mcM_H4adKbo",
+      "category": "Renda"
+    },
+    {
+      "amount": 2200,
+      "type": "transferencia",
+      "date": "2026-05-06T00:12:40.885Z",
+      "description": "Transferência",
+      "id": "3gqnCviJtJ8"
+    },
+    {
+      "amount": 3000,
+      "type": "transferencia",
+      "date": "2026-05-06T00:28:38.619Z",
+      "description": "Transferência",
+      "id": "tuMbA3F5fG0"
     }
   ],
   "accounts": [
